@@ -71,4 +71,19 @@ while user_input3 != "q":
                 print(f"Ha introducido el valor inválido: {num_of_days_element}, se ignora")
 
 
+print("----_")
+user_input4 = ""
+while user_input4 != "q":
+    user_input4 = input("Indica una lista de números (se mostrará una sóla vez los valores duplicados) separados por "
+                        "comas a "
+                        "comvertir a segundos (q=exit):\n")
+    if user_input4 != "q":
+        for num_of_days_element in set(user_input4.split(",")):  # set elimina los valores duplicados de una lista
+            if num_of_days_element.isdigit():  # comprobemos que el usuario ha introducido un número entero
+                segundos_recividos = days_to_minute_with_params_with_return(int(num_of_days_element))
+                print(segundos_recividos)
+            else:
+                print(f"Ha introducido el valor inválido: {num_of_days_element}, se ignora")
+
+
 
