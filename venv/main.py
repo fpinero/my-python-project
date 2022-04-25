@@ -94,6 +94,8 @@ def days_to_minute_with_params_with_dictionary(days_to_calculate, unit):
             elif unit == "minutos":
                 return f"{days_to_calculate} days are {days_to_calculate * calculation_to_minutes} minutes (here I'm " \
                        f"returning the result from the function using a dictionary) "
+            else:
+                return f"unsupported unit {unit}"
         elif days_to_calculate == 0:
             return f"Invalid number, the number can not be zero {days_to_calculate}"
         else:
