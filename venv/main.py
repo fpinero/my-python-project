@@ -3,6 +3,7 @@ print("----_")
 print(f"20 days are {20 * 24 * 60} minutes")
 print("----_")
 calculation_to_seconds = 24 * 60 * 60
+calculation_to_minutes = 24 * 60
 print(f"20 days are {20 * calculation_to_seconds} seconds (here I'm using a variable to compute the result)")
 print("----_")
 
@@ -57,7 +58,6 @@ while user_input2 != "q":
         else:
             print(f"Ha introducido un valor inválido")
 
-
 print("----_")
 user_input3 = ""
 while user_input3 != "q":
@@ -69,7 +69,6 @@ while user_input3 != "q":
                 print(segundos_recividos)
             else:
                 print(f"Ha introducido el valor inválido: {num_of_days_element}, se ignora")
-
 
 print("----_")
 user_input4 = ""
@@ -86,4 +85,30 @@ while user_input4 != "q":
                 print(f"Ha introducido el valor inválido: {num_of_days_element}, se ignora")
 
 
+def days_to_minute_with_params_with_dictionary(days_to_calculate, unit):
+    try:  # por si el usuario indica un número tan alto que provoque un desborde de la pila
+        if days_to_calculate > 0:
+            if unit == "segundos":
+                return f"{days_to_calculate} days are {days_to_calculate * calculation_to_seconds} seconds (here I'm " \
+                       f"returning the result from the function using a dictionary) "
+            elif unit == "minutos":
+                return f"{days_to_calculate} days are {days_to_calculate * calculation_to_minutes} minutes (here I'm " \
+                       f"returning the result from the function using a dictionary) "
+        elif days_to_calculate == 0:
+            return f"Invalid number, the number can not be zero {days_to_calculate}"
+        else:
+            return f"Invalid number, the number is negative {days_to_calculate}"
+    except ValueError:
+        return f"No se pudo calcular el valor introducido {days_to_calculate}"
 
+
+print("----_")
+user_input5 = ""
+while user_input5 != "q":
+    user_input5 = input("Indica un número y a lo que deseas convertirlos minutos o segundos (ej:50:minutos)"
+                        "(q=exit):\n")
+    if user_input5 != "q":
+        days_and_unit = user_input5.split(":")
+        days_and_unit_dictionary = {"days": days_and_unit[0], "unit": days_and_unit[1]}
+        print(days_to_minute_with_params_with_dictionary(int(days_and_unit_dictionary["days"]),
+                                                         days_and_unit_dictionary["unit"]))
