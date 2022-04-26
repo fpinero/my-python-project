@@ -1,15 +1,17 @@
+import helper
+import global_vars
+
 print("Hello World")
 print("----_")
 print(f"20 days are {20 * 24 * 60} minutes")
 print("----_")
-calculation_to_seconds = 24 * 60 * 60
-calculation_to_minutes = 24 * 60
-print(f"20 days are {20 * calculation_to_seconds} seconds (here I'm using a variable to compute the result)")
+
+print(f"20 days are {20 * global_vars.calculation_to_seconds} seconds (here I'm using a variable to compute the result)")
 print("----_")
 
 
 def days_to_minute():
-    print(f"50 days are {50 * calculation_to_seconds} seconds (here I'm into a function compute the result)")
+    print(f"50 days are {50 * global_vars.calculation_to_seconds} seconds (here I'm into a function compute the result)")
 
 
 days_to_minute()
@@ -19,7 +21,7 @@ print("----_")
 def days_to_minute_with_params(days):
     if days > 0:
         print(
-            f"{days} days are {days * calculation_to_seconds} seconds (here I'm passing days as a param to a function "
+            f"{days} days are {days * global_vars.calculation_to_seconds} seconds (here I'm passing days as a param to a function "
             f"compute the result)")
     else:
         print(f"Invalid number {days}")
@@ -37,7 +39,7 @@ else:
 def days_to_minute_with_params_with_return(days_to_calculate):
     try:  # por si el usuario indica un número tan alto que provoque un desborde de la pila
         if days_to_calculate > 0:
-            return f"{days_to_calculate} days are {days_to_calculate * calculation_to_seconds} seconds (here I'm " \
+            return f"{days_to_calculate} days are {days_to_calculate * global_vars.calculation_to_seconds} seconds (here I'm " \
                    f"returning the result from the function) "
         elif days_to_calculate == 0:
             return f"Invalid number, the number can not be zero {days_to_calculate}"
@@ -84,26 +86,6 @@ while user_input4 != "q":
             else:
                 print(f"Ha introducido el valor inválido: {num_of_days_element}, se ignora")
 
-
-def days_to_minute_with_params_with_dictionary(days_to_calculate, unit):
-    try:  # por si el usuario indica un número tan alto que provoque un desborde de la pila
-        if days_to_calculate > 0:
-            if unit == "segundos":
-                return f"{days_to_calculate} days are {days_to_calculate * calculation_to_seconds} seconds (here I'm " \
-                       f"returning the result from the function using a dictionary) "
-            elif unit == "minutos":
-                return f"{days_to_calculate} days are {days_to_calculate * calculation_to_minutes} minutes (here I'm " \
-                       f"returning the result from the function using a dictionary) "
-            else:
-                return f"unsupported unit {unit}"
-        elif days_to_calculate == 0:
-            return f"Invalid number, the number can not be zero {days_to_calculate}"
-        else:
-            return f"Invalid number, the number is negative {days_to_calculate}"
-    except ValueError:
-        return f"No se pudo calcular el valor introducido {days_to_calculate}"
-
-
 print("----_")
 user_input5 = ""
 while user_input5 != "q":
@@ -112,5 +94,5 @@ while user_input5 != "q":
     if user_input5 != "q":
         days_and_unit = user_input5.split(":")
         days_and_unit_dictionary = {"days": days_and_unit[0], "unit": days_and_unit[1]}
-        print(days_to_minute_with_params_with_dictionary(int(days_and_unit_dictionary["days"]),
+        print(helper.days_to_minute_with_params_with_dictionary(int(days_and_unit_dictionary["days"]),
                                                          days_and_unit_dictionary["unit"]))
